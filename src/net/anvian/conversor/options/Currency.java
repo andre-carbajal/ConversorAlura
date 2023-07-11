@@ -1,6 +1,4 @@
-package net.anvian.conversor.Options;
-
-import net.anvian.conversor.util.Currencies;
+package net.anvian.conversor.options;
 
 import javax.swing.*;
 
@@ -17,16 +15,16 @@ public class Currency {
             String option = (JOptionPane.showInputDialog(null, "Monedas", "Entrada",JOptionPane.INFORMATION_MESSAGE, null, currencies, currencies[0])).toString();
 
             switch (option) {
-                case "De Soles a Dolar" -> Currencies.SolesToDolar(money);
-                case "De Soles a Euro" -> Currencies.SolesToEuro(money);
-                case "De Soles a Libras" -> Currencies.SolesToLibras(money);
-                case "De Soles a Yen" -> Currencies.SolesToYen(money);
-                case "De Soles a Won sul-coreano" -> Currencies.SolesToWon(money);
-                case "De Dolar a Soles" -> Currencies.DolarToSoles(money);
-                case "De Euro a Soles" -> Currencies.EuroToSoles(money);
-                case "De Libras a Soles" -> Currencies.LibrasToSoles(money);
-                case "De Yen a Soles" -> Currencies.YenToSoles(money);
-                case "De Won sul-coreano a Soles" -> Currencies.WonToSoles(money);
+                case "De Soles a Dolar" -> TransformAndShow(money, 0.28, "Dolares");
+                case "De Soles a Euro" -> TransformAndShow(money, 0.25, "Euros");
+                case "De Soles a Libras" -> TransformAndShow(money, 0.21, "Libras");
+                case "De Soles a Yen" -> TransformAndShow(money, 38.78, "Yenes");
+                case "De Soles a Won sul-coreano" -> TransformAndShow(money, 356.63,"Won sul-coreano");
+                case "De Dolar a Soles" -> TransformAndShow(money, 3.63, "Soles");
+                case "De Euro a Soles" -> TransformAndShow(money, 4.0, "Soles");
+                case "De Libras a Soles" -> TransformAndShow(money, 4.67, "Soles");
+                case "De Yen a Soles" -> TransformAndShow(money, 0.026, "Soles");
+                case "De Won sul-coreano a Soles" -> TransformAndShow(money, 0.0028, "Soles");
             }
 
             int resp = JOptionPane.showConfirmDialog(null, "¿Desea continuar?", "Select an Opion", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
@@ -39,5 +37,11 @@ public class Currency {
             JOptionPane.showMessageDialog(null, "El valor ingresado no es valido");
             init();
         }
+    }
+
+    private static void TransformAndShow(double value, double exchange, String txt){
+        value *= exchange;
+        value = (double) Math.round(value * 100d)/100;
+        JOptionPane.showMessageDialog(null, "Tienes $"+ value + " " + txt);
     }
 }
