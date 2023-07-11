@@ -32,6 +32,7 @@ public class Currency {
                 init();
                 break;
             case 1:
+                JOptionPane.showMessageDialog(null, "El Programa termino exitosamente");
                 break;
         }
     }
