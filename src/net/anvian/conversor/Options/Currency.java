@@ -26,17 +26,18 @@ public class Currency {
             case "De Won sul-coreano a Soles" -> Currencies.WonToSoles(value);
         }
 
-            String[] alternatives = {"Si", "No"};
-            String selected = (JOptionPane.showInputDialog(null, "¿Desea continuar?", "¿Salir?",JOptionPane.INFORMATION_MESSAGE, null, alternatives, alternatives[0])).toString();
-            switch (selected){
-                case "Si":
-                    Currency.init();
-                case "No":
-                    break;
-            }
+        int resp = JOptionPane.showConfirmDialog(null, "¿Desea continuar?", "Select an Opion", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+        switch (resp){
+            case 0:
+                init();
+                break;
+            case 1:
+                break;
+        }
     }
+
     private static double convert(){
-        String currency = JOptionPane.showInputDialog(null, "Ingrese la cantidad de dinro que deseas convertir:");
+        String currency = JOptionPane.showInputDialog(null, "Ingrese la cantidad de dinero que deseas convertir:");
         currency = currency.replace(",", ".");
         return Double.parseDouble(currency);
     }
