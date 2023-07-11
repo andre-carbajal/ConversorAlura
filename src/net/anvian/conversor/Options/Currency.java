@@ -6,36 +6,38 @@ import javax.swing.*;
 
 public class Currency {
     public static void init() {
-        double value;
+        try {
+            String[] currencies = {"De Soles a Dolar", "De Soles a Euro", "De Soles a Libras", "De Soles a Yen", "De Soles a Won sul-coreano" +
+                    "De Dolar a Soles", "De Euro a Soles", "De Libras a Soles", "De Yen a Soles", "De Won sul-coreano a Soles"};
 
-        String[] currencies = {"De Soles a Dolar", "De Soles a Euro", "De Soles a Libras", "De Soles a Yen", "De Soles a Won sul-coreano," +
-                "De Dolar a Soles", "De Euro a Soles", "De Libras a Soles", "De Yen a Soles", "De Won sul-coreano a Soles"};
-        value= convert();
-        String option = (JOptionPane.showInputDialog(null, "Monedas", "Entrada",JOptionPane.INFORMATION_MESSAGE, null, currencies, currencies[0])).toString();
+            String currency = JOptionPane.showInputDialog(null, "Ingrese la cantidad de dinero que deseas convertir:");
+            currency = currency.replace(",", ".");
+            double money = Double.parseDouble(currency);
 
-        switch (option) {
-            case "De Soles a Dolar" -> Currencies.SolesToDolar(value);
-            case "De Soles a Euro" -> Currencies.SolesToEuro(value);
-            case "De Soles a Libras" -> Currencies.SolesToLibras(value);
-            case "De Soles a Yen" -> Currencies.SolesToYen(value);
-            case "De Soles a Won sul-coreano" -> Currencies.SolesToWon(value);
-            case "De Dolar a Soles" -> Currencies.DolarToSoles(value);
-            case "De Euro a Soles" -> Currencies.EuroToSoles(value);
-            case "De Libras a Soles" -> Currencies.LibrasToSoles(value);
-            case "De Yen a Soles" -> Currencies.YenToSoles(value);
-            case "De Won sul-coreano a Soles" -> Currencies.WonToSoles(value);
+            String option = (JOptionPane.showInputDialog(null, "Monedas", "Entrada",JOptionPane.INFORMATION_MESSAGE, null, currencies, currencies[0])).toString();
+
+            switch (option) {
+                case "De Soles a Dolar" -> Currencies.SolesToDolar(money);
+                case "De Soles a Euro" -> Currencies.SolesToEuro(money);
+                case "De Soles a Libras" -> Currencies.SolesToLibras(money);
+                case "De Soles a Yen" -> Currencies.SolesToYen(money);
+                case "De Soles a Won sul-coreano" -> Currencies.SolesToWon(money);
+                case "De Dolar a Soles" -> Currencies.DolarToSoles(money);
+                case "De Euro a Soles" -> Currencies.EuroToSoles(money);
+                case "De Libras a Soles" -> Currencies.LibrasToSoles(money);
+                case "De Yen a Soles" -> Currencies.YenToSoles(money);
+                case "De Won sul-coreano a Soles" -> Currencies.WonToSoles(money);
+            }
+
+            int resp = JOptionPane.showConfirmDialog(null, "¿Desea continuar?", "Select an Opion", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+            switch (resp) {
+                case 0 -> init();
+                case 1 -> JOptionPane.showMessageDialog(null, "El Programa termino exitosamente");
+            }
+        }catch (NumberFormatException e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "El valor ingresado no es valido");
+            init();
         }
-
-        int resp = JOptionPane.showConfirmDialog(null, "¿Desea continuar?", "Select an Opion", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-        switch (resp) {
-            case 0 -> init();
-            case 1 -> JOptionPane.showMessageDialog(null, "El Programa termino exitosamente");
-        }
-    }
-
-    private static double convert(){
-        String currency = JOptionPane.showInputDialog(null, "Ingrese la cantidad de dinero que deseas convertir:");
-        currency = currency.replace(",", ".");
-        return Double.parseDouble(currency);
     }
 }
