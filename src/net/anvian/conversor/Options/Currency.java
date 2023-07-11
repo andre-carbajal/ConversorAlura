@@ -27,13 +27,9 @@ public class Currency {
         }
 
         int resp = JOptionPane.showConfirmDialog(null, "¿Desea continuar?", "Select an Opion", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-        switch (resp){
-            case 0:
-                init();
-                break;
-            case 1:
-                JOptionPane.showMessageDialog(null, "El Programa termino exitosamente");
-                break;
+        switch (resp) {
+            case 0 -> init();
+            case 1 -> JOptionPane.showMessageDialog(null, "El Programa termino exitosamente");
         }
     }
 
