@@ -14,7 +14,7 @@ public class Temperatures {
     }
 
     public static void FahrenheitToCelsius(double grades, String from, String to) {
-        double transform = (grades * -32)* 5/9;
+        double transform = (grades - 32)* 5/9;
         JOptionPane.showMessageDialog(null, "Tienes " + grades + " " + from + " equivalnte a " + transform + " " + to);
     }
 
